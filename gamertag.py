@@ -22,7 +22,7 @@ def bruteforce(charset, maxlength):
 
 def main():
 
-    for gt in bruteforce('abcdefghijklmnopqrstuvwxyzABCDEFGGHIJKLMNOPQRSTUVWXYZ', 6):
+    for gt in bruteforce('abcdefghijklmnopqrstuvwxyz', 6):
 
         # the check 'again' page redirects to the main page
         driver.get("https://www.gamertagavailability.com")
@@ -35,10 +35,11 @@ def main():
 
         try:
             result = driver.find_element(By.XPATH, '//*[@id="nres"]/p[2]').text
-            if result != 'is not available!':
-                print('Available ' + gt)
             time.sleep(2)
         except:
+            # since the try block failed, the 'not available' message
+            # was not found, so the gamertag is available and there
+            # is no need to check for the 'available' message
             print('Gamertag ' + gt + ' is available!')
             time.sleep(5)
     driver.quit()
