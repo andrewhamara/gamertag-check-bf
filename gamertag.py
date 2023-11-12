@@ -3,7 +3,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 import time
 
 _service = Service()
@@ -34,7 +33,7 @@ def main():
         search.send_keys(Keys.RETURN)
 
         try:
-            result = driver.find_element(By.XPATH, '//*[@id="nres"]/p[2]').text
+            driver.find_element(By.XPATH, '//*[@id="nres"]/p[2]').text
             time.sleep(2)
         except:
             # since the try block failed, the 'not available' message
